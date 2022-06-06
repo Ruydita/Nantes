@@ -59,7 +59,8 @@ extension NantesLabel {
             guard 0..<lines.count ~= originalIndex else { continue }
 
             let originalLine = lines[originalIndex]
-            let originalRange = NSRange(range: CTLineGetStringRange(originalLine))
+            let _originalRange = NSRange(range: CTLineGetStringRange(originalLine))
+            let originalRange = NSRange(location: _originalRange.location, length: _originalRange.length - 1)
             let originalString = NSMutableAttributedString(attributedString: attributedString.attributedSubstring(from: originalRange))
 
             let truncation = truncationInfo(from: originalRange.location, length: originalRange.length, for: lineBreakMode)
